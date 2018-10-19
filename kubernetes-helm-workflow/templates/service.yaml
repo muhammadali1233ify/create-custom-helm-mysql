@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.accountDatabase.dbname }}
+  labels:
+    app: {{ .Values.accountDatabase.dblabelapp }}
+spec:
+  ports:
+    - port: {{.Values.accountDatabase.image.port.Mysqlconport}}
+      protocol: TCP
+      targetPort: {{.Values.accountDatabase.image.port.Mysqlconport}}
+  selector:
+    app: {{ .Values.accountDatabase.dblabelapp }}
+    tier: {{ .Values.accountDatabase.dbtier }}
